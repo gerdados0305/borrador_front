@@ -1,0 +1,53 @@
+# -----------------------------
+# Node / Vite
+# -----------------------------
+node_modules/
+dist/
+dist-ssr/
+.vite/
+vite.config.timestamp-*
+*.local
+
+# Mapas/CSS generados (opcional)
+*.css.map
+
+# -----------------------------
+# Logs
+# -----------------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# -----------------------------
+# Variables de entorno (¡no subir!)
+# -----------------------------
+.env
+.env.*
+.env.*.local
+
+# -----------------------------
+# Editor / SO
+# -----------------------------
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Proyectos MS / IDEs varios
+# -----------------------------
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# -----------------------------
+# Tests / coverage
+# -----------------------------
+coverage/

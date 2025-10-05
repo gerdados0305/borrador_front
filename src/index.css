@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* App full-width / full-height */
+html, body, #root {
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  max-width: none;   /* <- elimina el límite de 1280px del template de Vite */
+  margin: 0;
+  padding: 0;
+}
+
+/* Tema base (oscuro) */
+body {
+  @apply bg-zinc-900 text-white;
+}
