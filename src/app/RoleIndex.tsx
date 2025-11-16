@@ -1,4 +1,3 @@
-// src/app/RoleIndex.tsx
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../store/auth.store";
 import HomeAlumno from "../pages/home/HomeAlumno";

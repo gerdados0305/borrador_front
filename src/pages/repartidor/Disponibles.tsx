@@ -1,4 +1,3 @@
-// src/pages/repartidor/Disponibles.tsx
 import { useEffect, useState } from "react";
 
 type Pedido = {

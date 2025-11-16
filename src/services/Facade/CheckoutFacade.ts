@@ -1,4 +1,3 @@
-// src/services/Facade/CheckoutFacade.ts
 import { useCarrito } from "../../store/carrito.store";
 import { DeliveryCalculator } from "../Pricing/DeliveryCalculator";
 import { FlatDelivery } from "../Pricing/strategies/FlatDelivery";
@@ -17,14 +16,12 @@ export type Pedido = {
 };
 
 export class CheckoutFacade {
-  // ✅ nada de "constructor(private ...)" — declaramos el campo explícito
   private deliveryCalc: DeliveryCalculator;
 
   constructor() {
     this.deliveryCalc = new DeliveryCalculator(new FlatDelivery());
   }
 
-  // opcional: cambiar estrategia desde fuera si quieres (tests/reglas futuras)
   setDeliveryCalculator(calc: DeliveryCalculator) {
     this.deliveryCalc = calc;
   }

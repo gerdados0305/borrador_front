@@ -1,4 +1,3 @@
-// src/pages/tiendas/TiendaDetalle.tsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { obtenerTienda, type Tienda } from "../../services/TiendasService";

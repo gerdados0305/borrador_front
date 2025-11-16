@@ -1,4 +1,3 @@
-// src/services/AuthService.ts
 export type User = {
   codigo: string;
   nombre: string;
@@ -39,14 +38,14 @@ function saveCustomUsers(users: User[]) {
   }
 }
 
-// 👉 Login: busca tanto en los mocks como en los registrados
+// Login: busca tanto en los mocks como en los registrados
 export async function loginUser(codigo: string, pass: string): Promise<User | null> {
   const all = [...usersMock, ...loadCustomUsers()];
   const u = all.find((u) => u.codigo === codigo && u.password === pass);
   return Promise.resolve(u ?? null);
 }
 
-// 👉 Registro: guarda usuarios nuevos en localStorage
+// Registro: guarda usuarios nuevos en localStorage
 export async function registerUser(newUser: User): Promise<User> {
   const custom = loadCustomUsers();
   const all = [...usersMock, ...custom];

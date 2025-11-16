@@ -1,4 +1,3 @@
-// src/pages/repartidor/PerfilEditar.tsx
 import { useState, FormEvent, ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 

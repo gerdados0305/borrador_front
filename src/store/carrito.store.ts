@@ -1,4 +1,3 @@
-// src/store/carrito.store.ts
 import { create } from "zustand";
 
 export type Producto = { idProducto:number; nombre:string; precio:number; imagen:string; };

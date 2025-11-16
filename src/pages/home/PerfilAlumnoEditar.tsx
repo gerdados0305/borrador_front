@@ -1,4 +1,3 @@
-// src/pages/home/PerfilAlumnoEditar.tsx
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/auth.store";

@@ -1,4 +1,3 @@
-// src/pages/Historial/Historial.tsx
 type Pedido = {
   id: string;
   fecha: string;

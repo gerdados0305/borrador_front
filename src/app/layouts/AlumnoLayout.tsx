@@ -1,4 +1,3 @@
-// src/app/layouts/AlumnoLayout.tsx
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../store/auth.store";
 

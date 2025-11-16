@@ -1,4 +1,3 @@
-// src/pages/repartidor/HistorialRepartidor.tsx
 import { useEffect, useState } from "react";
 
 type Pedido = {

@@ -1,4 +1,3 @@
-// src/pages/home/HomeAlumno.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../store/auth.store";

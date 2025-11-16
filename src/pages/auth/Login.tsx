@@ -1,4 +1,3 @@
-// src/pages/auth/Login.tsx
 import { useAuth } from "../../store/auth.store";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -17,7 +16,9 @@ export default function Login() {
   const [regError, setRegError] = useState<string | null>(null);
   const [regData, setRegData] = useState({
     codigo: "",
-    nombre: "",
+    nombres: "",
+    apellidos: "",
+    nombreTienda: "",
     password: "",
     confirm: "",
     rol: "alumno" as RolRegistro,
@@ -78,13 +79,20 @@ export default function Login() {
       return;
     }
 
+    // construir nombre según rol
+    let nombreFinal: string;
+    if (regData.rol === "tienda") {
+      nombreFinal = regData.nombreTienda.trim();
+    } else {
+      nombreFinal = `${regData.nombres.trim()} ${regData.apellidos.trim()}`.trim();
+    }
+
     try {
       await registerUser({
         codigo: regData.codigo.trim(),
-        nombre: regData.nombre.trim(),
+        nombre: nombreFinal,
         password: regData.password,
         rol: regData.rol,
-        // solo tienda guarda email, para alumno/repartidor queda undefined
         email:
           regData.rol === "tienda" && regData.email.trim()
             ? regData.email.trim()
@@ -95,7 +103,9 @@ export default function Login() {
       // limpiar y cerrar registro
       setRegData({
         codigo: "",
-        nombre: "",
+        nombres: "",
+        apellidos: "",
+        nombreTienda: "",
         password: "",
         confirm: "",
         rol: "alumno",
@@ -191,21 +201,48 @@ export default function Login() {
                 />
               </label>
 
-              {/* Nombre */}
+              {/* Nombre: según rol */}
+              {regData.rol === "tienda" ? (
+                <label className="flex flex-col gap-1 text-sm">
+                  <span className="opacity-70">Nombre de la tienda</span>
+                  <input
+                    value={regData.nombreTienda}
+                    onChange={(e) =>
+                      setRegData({ ...regData, nombreTienda: e.target.value })
+                    }
+                    className="bg-zinc-800 rounded px-3 py-2"
+                    required
+                  />
+                </label>
+              ) : (
+                <label className="flex flex-col gap-1 text-sm">
+                  <span className="opacity-70">Nombres</span>
+                  <input
+                    value={regData.nombres}
+                    onChange={(e) =>
+                      setRegData({ ...regData, nombres: e.target.value })
+                    }
+                    className="bg-zinc-800 rounded px-3 py-2"
+                    required
+                  />
+                </label>
+              )}
+            </div>
+
+            {/* Apellido solo para alumno/repartidor */}
+            {regData.rol !== "tienda" && (
               <label className="flex flex-col gap-1 text-sm">
-                <span className="opacity-70">
-                  {regData.rol === "tienda" ? "Nombre de la tienda" : "Nombre"}
-                </span>
+                <span className="opacity-70">Apellido</span>
                 <input
-                  value={regData.nombre}
+                  value={regData.apellidos}
                   onChange={(e) =>
-                    setRegData({ ...regData, nombre: e.target.value })
+                    setRegData({ ...regData, apellidos: e.target.value })
                   }
                   className="bg-zinc-800 rounded px-3 py-2"
                   required
                 />
               </label>
-            </div>
+            )}
 
             {/* Solo para TIENDA: correo */}
             {regData.rol === "tienda" && (
@@ -260,8 +297,7 @@ export default function Login() {
                   setRegData({
                     ...regData,
                     rol: e.target.value as RolRegistro,
-                    // si cambia a otro rol, limpiamos email para evitar ruido
-                    email: e.target.value === "tienda" ? regData.email : "",
+                    // si cambio de rol, puedo limpiar campos específicos si quieres
                   })
                 }
                 className="bg-zinc-800 rounded px-3 py-2"

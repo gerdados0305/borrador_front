@@ -1,4 +1,3 @@
-// src/pages/home/PerfilAlumno.tsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../store/auth.store";

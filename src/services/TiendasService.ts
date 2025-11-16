@@ -1,4 +1,3 @@
-// src/services/TiendasService.ts
 export type Producto = {
   idProducto: number;
   nombre: string;

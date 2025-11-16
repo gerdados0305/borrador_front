@@ -1,4 +1,3 @@
-// src/pages/repartidor/useRepartidorProfile.ts
 import { useAuth } from "../../store/auth.store";
 import { useEffect, useState } from "react";
 

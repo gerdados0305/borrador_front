@@ -1,4 +1,3 @@
-// src/components/QtyInput.tsx
 type Props = { value:number; onChange:(n:number)=>void; min?:number; max?:number; };
 export default function QtyInput({ value, onChange, min=1, max=99 }: Props){
   const clamp = (n:number)=> Math.max(min, Math.min(max, n));

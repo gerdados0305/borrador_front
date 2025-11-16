@@ -1,4 +1,3 @@
-// src/app/routes.tsx
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedLayout from "./ProtectedLayout";
 

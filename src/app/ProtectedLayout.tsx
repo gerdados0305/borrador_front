@@ -1,4 +1,3 @@
-// src/app/ProtectedLayout.tsx
 import { Outlet, Navigate } from "react-router-dom";
 import { useAuth } from "../store/auth.store";
 import AlumnoLayout from "./layouts/AlumnoLayout";

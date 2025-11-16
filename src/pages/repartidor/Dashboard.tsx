@@ -1,4 +1,3 @@
-// src/pages/repartidor/Dashboard.tsx
 type Pedido = {
   id: string;
   fecha: string;
