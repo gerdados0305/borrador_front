@@ -1,4 +1,4 @@
-// src/pages/Alumno_Repartidor/Alumno_Repartidor.tsx
+// src/pages/repartidor/Dashboard.tsx
 type PedidoAsignado = {
   id: string;
   destino: string;
@@ -9,12 +9,11 @@ type PedidoAsignado = {
 
 const s = (n:number)=> new Intl.NumberFormat("es-PE",{style:"currency",currency:"PEN"}).format(n);
 
-// demo:  lee historial y arma 1–2 pedidos “asignados”
 function mockAsignados(): PedidoAsignado[] {
   try {
     const hist = JSON.parse(localStorage.getItem("historial") || "[]");
     return (hist as any[]).slice(-2).map((p:any)=>({
-      id: p.id,
+      id: crypto.randomUUID(),
       destino: "Puerta Edificio E",
       tienda: "ULExpress",
       total: p.total,
@@ -23,7 +22,7 @@ function mockAsignados(): PedidoAsignado[] {
   } catch { return []; }
 }
 
-export default function Alumno_Repartidor(){
+export default function Dashboard(){
   const asignados = mockAsignados();
   return (
     <section className="space-y-4">

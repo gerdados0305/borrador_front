@@ -1,27 +1,29 @@
 // src/app/routes.tsx
-// src/app/routes.tsx
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedLayout from "./ProtectedLayout";
 
-// Auth / Home
+// Auth
 import Login from "../pages/auth/Login";
-import Home from "../pages/home/Home";
 
-// Tiendas (cliente)
+// Home por rol
+import RoleIndex from "./RoleIndex";
+
+// Alumno (pantallas existentes)
+import HomeAlumno from "../pages/home/HomeAlumno";
 import TiendasList from "../pages/tiendas/TiendasList";
 import TiendaDetalle from "../pages/tiendas/TiendaDetalle";
-
-// Carrito / Checkout
 import Carrito from "../pages/carrito/Carrito";
 import Confirmacion from "../pages/checkout/Confirmacion";
-
-// Extras (Soft II)
 import Historial from "../pages/Historial/Historial";
-import Alumno_Repartidor from "../pages/Alumno_Repartidor/Alumno_Repartidor";
 
-// Panel Tienda (rol tienda)
+// Repartidor
+import RepartidorDashboard from "../pages/repartidor/Dashboard";
+import RepartidorPerfil from "../pages/repartidor/Perfil";
+import RepartidorPerfilEditar from "../pages/repartidor/PerfilEditar";
+
+// Panel Tienda (tus archivos existentes)
 import TiendaLayout from "../pages/TiendaPanel/TiendaLayout";
-import TiendaStock from "../pages/TiendaPanel/TiendaStock.tsx";
+import TiendaStock from "../pages/TiendaPanel/TiendaStock";
 import TiendaPrecios from "../pages/TiendaPanel/TiendaPrecios";
 import TiendaNuevo from "../pages/TiendaPanel/TiendaNuevo";
 
@@ -31,30 +33,33 @@ export const router = createBrowserRouter([
     path: "/",
     element: <ProtectedLayout />,
     children: [
-      // Home
-      { index: true, element: <Home /> },
+      // ===== INDEX POR ROL =====
+      { index: true, element: <RoleIndex /> },
 
-      // Tiendas (cliente)
+      // ===== Alumno =====
+      // Si alguna vez quieres una ruta explícita para el home de alumno:
+      { path: "alumno", element: <HomeAlumno /> },
       { path: "tiendas", element: <TiendasList /> },
       { path: "tiendas/:id", element: <TiendaDetalle /> },
-
-      // Carrito / Checkout
       { path: "carrito", element: <Carrito /> },
       { path: "checkout", element: <Confirmacion /> },
-
-      // Extras
       { path: "historial", element: <Historial /> },
-      { path: "alumno-repartidor", element: <Alumno_Repartidor /> },
 
-      // Panel Tienda (solo visible si el usuario tiene rol "tienda")
+      // ===== Repartidor =====
+       { path: "repartidor", element: <RepartidorDashboard /> },
+      { path: "repartidor/perfil", element: <RepartidorPerfil /> },
+      { path: "repartidor/perfil/editar", element: <RepartidorPerfilEditar /> },
+
+
+      // ===== Tienda =====
       {
         path: "tienda",
         element: <TiendaLayout />,
         children: [
-          { index: true, element: <TiendaStock /> },     // /tienda
-          { path: "stock", element: <TiendaStock /> },   // /tienda/stock
-          { path: "precios", element: <TiendaPrecios /> }, // /tienda/precios
-          { path: "nuevo", element: <TiendaNuevo /> },   // /tienda/nuevo
+          { index: true, element: <TiendaStock /> }, // al entrar a /tienda muestra Stock
+          { path: "stock", element: <TiendaStock /> },
+          { path: "precios", element: <TiendaPrecios /> },
+          { path: "nuevo", element: <TiendaNuevo /> },
         ],
       },
     ],
