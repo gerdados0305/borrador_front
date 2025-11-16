@@ -1,10 +1,10 @@
-// src/pages/repartidor/Dashboard.tsx
+// src/pages/repartidor/HistorialRepartidor.tsx
+import { useEffect, useState } from "react";
+
 type Pedido = {
   id: string;
   fecha: string;
   estado: "CREADO" | "ACEPTADO" | "ENTREGADO";
-  destino?: string;
-  tienda?: string;
   total: number;
 };
 
@@ -30,43 +30,41 @@ function loadAsignadosIds(): string[] {
   }
 }
 
-export default function RepartidorDashboard() {
-  const pedidos = loadPedidos();
-  const ids = new Set(loadAsignadosIds());
+export default function HistorialRepartidor() {
+  const [pedidos, setPedidos] = useState<Pedido[]>([]);
 
-  const asignados = pedidos.filter(
-    (p) => ids.has(p.id) || p.estado === "ACEPTADO"
-  );
+  useEffect(() => {
+    setPedidos(loadPedidos());
+  }, []);
+
+  const ids = new Set(loadAsignadosIds());
+  const historial = pedidos.filter((p) => ids.has(p.id));
 
   return (
     <section className="space-y-4">
-      <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-        <div>
-          <h1 className="text-2xl font-bold">Entregas asignadas</h1>
-          <p className="text-sm text-gray-300">
-            Aquí ves los pedidos que ya aceptaste y están en curso.
-          </p>
-        </div>
+      <header>
+        <h1 className="text-2xl font-bold">Historial de entregas</h1>
+        <p className="text-sm text-gray-300">
+          Resumen de pedidos que has aceptado y entregado.
+        </p>
       </header>
 
-      {asignados.length === 0 ? (
+      {historial.length === 0 ? (
         <p className="text-sm text-gray-300">
-          No tienes entregas asignadas en este momento.
+          Aún no tienes historial de entregas.
         </p>
       ) : (
         <div className="space-y-3">
-          {asignados.map((p) => (
+          {historial.map((p) => (
             <div
               key={p.id}
               className="flex items-center justify-between bg-white/5 rounded-lg px-4 py-3"
             >
               <div>
-                <div className="font-semibold">
-                  #{p.id.slice(0, 8)} {p.tienda && `— ${p.tienda}`}
+                <div className="font-semibold">#{p.id.slice(0, 8)}</div>
+                <div className="text-xs text-gray-400">
+                  Fecha: {new Date(p.fecha).toLocaleString()}
                 </div>
-                {p.destino && (
-                  <div className="text-sm text-gray-300">{p.destino}</div>
-                )}
                 <div className="text-xs text-gray-400 mt-1">
                   Estado: {p.estado}
                 </div>
