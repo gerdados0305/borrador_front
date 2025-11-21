@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../../config/api";
+import ChatPedido from "../../components/ChatPedido";
 
 type Pedido = {
   id: string;
